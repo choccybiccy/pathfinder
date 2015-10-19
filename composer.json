@@ -1,0 +1,27 @@
+{
+    "name": "martinh/pathfinder",
+    "description": "A* (a star) path finder library",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Hughes",
+            "email": "martinph01@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Choccybiccy\\Pathfinder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Choccybiccy\\Pathfinder\\": "tests/"
+        }
+    }
+}
