@@ -87,15 +87,6 @@ class Path
     }
 
     /**
-     * @param NodeInterface $node
-     * @return string
-     */
-    protected function getNodeKey(NodeInterface $node)
-    {
-        return $node->getX() . "," . $node->getY();
-    }
-
-    /**
      * @return NodeInterface
      */
     public function getStart()

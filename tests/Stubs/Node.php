@@ -42,17 +42,15 @@ class Node implements NodeInterface
     public function getNeighbours()
     {
         $nodes = [];
-        $directions = ["x" => [-1, 1], "y" => [-1, 1]];
-        foreach($directions['x'] as $x) {
-            $newX = $this->x + $x;
-            if($newX > 0) {
-                $nodes[] = new Node($newX, $this->y);
-            }
-        }
-        foreach($directions['y'] as $y) {
-            $newY = $this->y + $y;
-            if($newY > 0) {
-                $nodes[] = new Node($this->x, $newY);
+        $coordinates = [
+            [$this->x-1, $this->y],   // -1,0
+            [$this->x, $this->y+1],   // 0,1
+            [$this->x+1, $this->y],   // 1,0
+            [$this->x, $this->y-1],   // 0,-1
+        ];
+        foreach($coordinates as $axis) {
+            if($axis[0] > 0 && $axis[1] > 0) {
+                $nodes[] = new Node($axis[0], $axis[1]);
             }
         }
         return $nodes;
