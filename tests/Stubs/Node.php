@@ -39,7 +39,7 @@ class Node implements NodeInterface
     /**
      * @return Node[]
      */
-    public function getAdjacentNodes()
+    public function getNeighbours()
     {
         $nodes = [];
         $directions = ["x" => [-1, 1], "y" => [-1, 1]];

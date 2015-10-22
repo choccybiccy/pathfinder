@@ -29,14 +29,14 @@ class Set
      */
     public function __construct($nodes = [], $heuristic = null)
     {
-        if(!is_callable($heuristic)) {
-            $heuristic = function(NodeInterface $node) {
+        if (!is_callable($heuristic)) {
+            $heuristic = function (NodeInterface $node) {
                 return 1;
             };
         }
         $this->heuristic = $heuristic;
-        foreach($nodes as $node) {
-            $this->add($node);
+        foreach ($nodes as $node) {
+            $this->add($node, 0);
         }
     }
 
@@ -58,7 +58,7 @@ class Set
     public function getSortedItems()
     {
         $f = [];
-        foreach($this->items as $key => $node) {
+        foreach ($this->items as $key => $node) {
             $f[$key] = $node->getF();
         }
         array_multisort($f, SORT_ASC, $this->items);
@@ -82,7 +82,7 @@ class Set
      */
     public function remove(NodeInterface $node)
     {
-        if($this->has($node)) {
+        if ($this->has($node)) {
             return $this->items[$this->hash($node)];
         }
     }
@@ -118,7 +118,7 @@ class Set
      */
     public function get(NodeInterface $node)
     {
-        if($this->has($node)) {
+        if ($this->has($node)) {
             return $this->items[$this->hash($node)];
         }
         return null;
@@ -130,7 +130,7 @@ class Set
      */
     protected function hash(NodeInterface $node)
     {
-        return spl_object_hash($node);
+        return md5($node->getX() . "," . $node->getY());
     }
 
     /**

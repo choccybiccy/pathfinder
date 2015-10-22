@@ -14,7 +14,7 @@ interface NodeInterface
      *
      * @return NodeInterface[]
      */
-    public function getAdjacentNodes();
+    public function getNeighbours();
 
     /**
      * @return int

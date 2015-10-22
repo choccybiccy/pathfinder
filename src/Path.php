@@ -35,6 +35,8 @@ class Path
 
     /**
      * Run the pathfinder algorithm
+     *
+     * @return \SplStack
      */
     public function run()
     {
@@ -42,50 +44,45 @@ class Path
         $start = $this->start;
         $goal = $this->goal;
 
-        $open = new Set([$start], function(NodeInterface $node) use ($goal) {
-            $this->getHeuristic($goal, $node);
+        $open = new Set([$start], function (NodeInterface $node) use ($goal) {
+            return $this->getHeuristic($goal, $node);
         });
         $closed = new Set();
 
         $open->add($start);
 
-        $step = new Step($start, null);
+        $path = new \SplStack();
 
-        while(!$open->isEmpty()) {
+        $step = null;
 
+        while (!$open->isEmpty()) {
             $current = $open->current();
-            echo $current->getNode() . "\n";
+            $path->push($current->getNode());
+            $step = new Step($current->getNode(), $step);
 
-            if($current->getNode() == $goal) {
+            if ($current->getNode() == $goal) {
                 break;
             }
 
             $closed->add($current->getNode());
 
-            $neighbours = $current->getNode()->getAdjacentNodes();
-            foreach($neighbours as $neighbour) {
-
-                // Check if already evaluated
-                if($closed->has($neighbour)) {
-                    die("HERE");
+            $neighbours = $current->getNode()->getNeighbours();
+            foreach ($neighbours as $neighbour) {
+                if ($closed->has($neighbour)) {
                     continue;
                 }
-
-                $distance = $this->getHeuristic($current->getNode(), $neighbour);
-                $score = $current->getG() + $distance;
-
-                if(!$open->has($neighbour)) {
-                    $open->add($neighbour, $distance);
-                } elseif($score >= $open->get($neighbour)->getG()) {
-                    continue;
+                if (!$open->has($neighbour)) {
+                    $open->add(
+                        $neighbour,
+                        $this->getHeuristic($current->getNode(), $neighbour) + $neighbour->getCost()
+                    );
                 }
-
-                $step = new Step($neighbour, $step);
 
             }
+
         }
 
-        die(":(");
+        return $path;
 
     }
 
@@ -123,5 +120,4 @@ class Path
     {
         return abs($goal->getX() - $current->getX()) + abs($goal->getY() - $current->getY());
     }
-
 }
