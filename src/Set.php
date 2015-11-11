@@ -30,7 +30,7 @@ class Set
     public function __construct($nodes = [], $heuristic = null)
     {
         if (!is_callable($heuristic)) {
-            $heuristic = function (NodeInterface $node) {
+            $heuristic = function () {
                 return 1;
             };
         }
@@ -66,6 +66,14 @@ class Set
     }
 
     /**
+     * @return Item[]
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
      * @param NodeInterface $node
      * @param int $distanceFromStart
      * @return $this
@@ -85,6 +93,7 @@ class Set
         if ($this->has($node)) {
             return $this->items[$this->hash($node)];
         }
+        return null;
     }
 
     /**
@@ -140,5 +149,13 @@ class Set
     protected function heuristic(NodeInterface $node)
     {
         return call_user_func($this->heuristic, $node);
+    }
+
+    /**
+     * @return callable|\Closure
+     */
+    public function getHeuristic()
+    {
+        return $this->heuristic;
     }
 }

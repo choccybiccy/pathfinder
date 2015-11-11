@@ -10,7 +10,7 @@ class StepTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     *
+     * Test getters
      */
     public function testGets()
     {

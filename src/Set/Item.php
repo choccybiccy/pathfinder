@@ -4,6 +4,10 @@ namespace Choccybiccy\Pathfinder\Set;
 
 use Choccybiccy\Pathfinder\NodeInterface;
 
+/**
+ * Class Item
+ * @package Choccybiccy\Pathfinder\Set
+ */
 class Item
 {
 

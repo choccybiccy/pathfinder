@@ -28,8 +28,8 @@ class PathTest extends \PHPUnit_Framework_TestCase
     public function testRun()
     {
 
-        $start = new Node(2,2);
-        $goal = new Node(4,4);
+        $start = new Node(2, 2);
+        $goal = new Node(4, 4);
 
         $path = new Path($start, $goal);
 

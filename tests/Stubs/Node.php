@@ -48,8 +48,8 @@ class Node implements NodeInterface
             [$this->x+1, $this->y],   // 1,0
             [$this->x, $this->y-1],   // 0,-1
         ];
-        foreach($coordinates as $axis) {
-            if($axis[0] > 0 && $axis[1] > 0) {
+        foreach ($coordinates as $axis) {
+            if ($axis[0] > 0 && $axis[1] > 0) {
                 $nodes[] = new Node($axis[0], $axis[1]);
             }
         }
