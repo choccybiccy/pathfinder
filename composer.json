@@ -1,5 +1,5 @@
 {
-    "name": "martinh/pathfinder",
+    "name": "choccybiccy/pathfinder",
     "description": "A* (a star) path finder library",
     "type": "library",
     "require-dev": {
