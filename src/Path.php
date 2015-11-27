@@ -2,8 +2,6 @@
 
 namespace Choccybiccy\Pathfinder;
 
-use Choccybiccy\Pathfinder\Path\Step;
-
 /**
  * Class Path
  * @package Choccybiccy\Pathfinder
@@ -53,12 +51,9 @@ class Path
 
         $path = new \SplStack();
 
-        $step = null;
-
         while (!$open->isEmpty()) {
             $current = $open->current();
             $path->push($current->getNode());
-            $step = new Step($current->getNode(), $step);
 
             if ($current->getNode() == $goal) {
                 break;
