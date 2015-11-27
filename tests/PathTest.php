@@ -42,18 +42,8 @@ class PathTest extends \PHPUnit_Framework_TestCase
 
         $step = $stack->bottom();
         $stack->shift();
-        $this->assertEquals(2, $step->getX());
-        $this->assertEquals(3, $step->getY());
-
-        $step = $stack->bottom();
-        $stack->shift();
-        $this->assertEquals(2, $step->getX());
-        $this->assertEquals(4, $step->getY());
-
-        $step = $stack->bottom();
-        $stack->shift();
         $this->assertEquals(3, $step->getX());
-        $this->assertEquals(4, $step->getY());
+        $this->assertEquals(3, $step->getY());
 
         $step = $stack->bottom();
         $stack->shift();

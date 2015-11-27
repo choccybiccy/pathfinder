@@ -43,10 +43,14 @@ class Node implements NodeInterface
     {
         $nodes = [];
         $coordinates = [
-            [$this->x-1, $this->y],   // -1,0
-            [$this->x, $this->y+1],   // 0,1
-            [$this->x+1, $this->y],   // 1,0
-            [$this->x, $this->y-1],   // 0,-1
+            [$this->x+1, $this->y],   // Right
+            [$this->x+1, $this->y+1],   // Bottom right
+            [$this->x, $this->y+1],   // Bottom
+            [$this->x-1, $this->y-1],   // Bottom left
+            [$this->x-1, $this->y],   // Left
+            [$this->x-1, $this->y-1],   // Top left
+            [$this->x, $this->y-1],   // Top
+            [$this->x+1, $this->y-1],   // Top right
         ];
         foreach ($coordinates as $axis) {
             if ($axis[0] > 0 && $axis[1] > 0) {
